@@ -12,10 +12,16 @@ function App() {
     )
   })
   const [posts, setPosts] = useState([])
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts').then(response => response.json()).then(e => setPosts(e))
+  useEffect( () => {
+    const fetchData  = async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+      const data = await response.json()
+      console.log(data)
+      setPosts(data)
+} 
+    fetchData()
   }, [])
-  return (
+    return (
     <div className='flex-col'>
       < Navbar/>
       {story}
